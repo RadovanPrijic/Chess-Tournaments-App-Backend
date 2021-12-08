@@ -7,10 +7,14 @@ const PORT = 5000;
 app.use(bodyParser.json());
 
 const { Sequelize } = require('sequelize');
-const database = new Sequelize('database', 'username', 'password', { //TODO Ovde upisati potrebno!
+const database = new Sequelize('chessdatabase', 'postgres', '12345', { //TODO Ovde upisati potrebno!
     host: 'localhost',
-    dialect: 'mysql2'
-  });
+    dialect: 'postgres'
+});
+
+database.authenticate
+    .then(() => console.log('Database connected.'))
+    .catch(err => console.log('Error: ' + err));
 
 app.get('/', (req, res) => {
     res.send('Welcome to the homepage!')
