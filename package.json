@@ -1,0 +1,26 @@
+{
+  "name": "sj_javascript_prviprojekat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "rest_api.js",
+  "scripts": {
+    "start": "nodemon rest_api.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RadovanPrijic/sj_javascript_prviprojekat.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RadovanPrijic/sj_javascript_prviprojekat/issues"
+  },
+  "homepage": "https://github.com/RadovanPrijic/sj_javascript_prviprojekat#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.15",
+    "sequelize": "^6.12.0-beta.1"
+  }
+}
