@@ -7,12 +7,9 @@ const PORT = 5000;
 app.use(bodyParser.json());
 
 const { Sequelize } = require('sequelize');
-const database = new Sequelize('chessdatabase', 'postgres', '12345', { //TODO Ovde upisati potrebno!
-    host: 'localhost',
-    dialect: 'postgres'
-});
+const database = new Sequelize('postgres://postgres:12345@127.0.0.1:8000/chessdatabase');
 
-database.authenticate
+database.authenticate()
     .then(() => console.log('Database connected.'))
     .catch(err => console.log('Error: ' + err));
 
