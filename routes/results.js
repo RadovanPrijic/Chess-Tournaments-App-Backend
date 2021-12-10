@@ -23,13 +23,13 @@ route.get('/results/:id', (req, res) => {
 route.post('/results', (req, res) => {
 
     Results.create({
+        userId: req.body.userId,
+        tournamentId: req.body.tournamentId,
         ranking: req.body.ranking,
         prize: req.body.prize,
         country_represented: req.body.country_represented,
         elo_change: req.body.elo_change,
-        coach: req.body.coach,
-        userId: req.body.userId,
-        tournamentId: req.body.tournamentId
+        coach: req.body.coach
     })
         .then( rows => res.json(rows) )
         .catch( err => res.status(500).json(err) );
@@ -40,13 +40,13 @@ route.put('/results/:id', (req, res) => {
     
     Results.findOne({ where: { id: req.params.id }, include: ['user','tournament'] })
         .then( result => {
+            result.userId = req.body.userId;
+            result.tournamentId = req.body.tournamentId;
             result.ranking = req.body.ranking;
             result.prize = req.body.prize;
             result.country_represented = req.body.country_represented;
             result.elo_change = req.body.elo_change;
             result.coach = req.body.coach;
-            result.userId = req.body.userId;
-            result.tournamentId = req.body.tournamentId;
 
             result.save()
                 .then( rows => res.json(rows) )

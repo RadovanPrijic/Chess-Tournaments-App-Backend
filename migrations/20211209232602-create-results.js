@@ -2,12 +2,16 @@
 module.exports = {
   up: async (queryInterface, DataTypes) => {
     await queryInterface.createTable('Results', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
+      userId: {
+        type: DataTypes.INTEGER,
         primaryKey: true,
-        type: DataTypes.INTEGER
+        allowNull: false
       },
+      tournamentId: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        allowNull: false
+      }, 
       ranking: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -29,7 +33,7 @@ module.exports = {
         allowNull: true,
         validate: {
           notEmpty: true,
-          is: /^[a-zA-Z\s]*$/i
+          isAlpha: true
         }
       },
       elo_change: {
@@ -45,16 +49,8 @@ module.exports = {
         allowNull: true,
         validate: {
           notEmpty: true,
-          is: /^[a-zA-Z\s]*$/i
+          isAlpha: true
         }
-      },
-      userId: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      },
-      tournamentId: {
-        type: DataTypes.INTEGER,
-        allowNull: false
       },
       createdAt: {
         allowNull: false,

@@ -44,6 +44,7 @@ module.exports = {
       website: {
         type: DataTypes.STRING,
         allowNull: true,
+        unique: true,
         validate: {
           isUrl: true
         }

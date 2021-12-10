@@ -60,7 +60,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        isIn: [['round-robin', 'Swiss system', 'elimination', 'Scheveningen system,']]
+        isIn: [['round-robin', 'Swiss system', 'elimination', 'Scheveningen system']]
       }
     },
   }, {
