@@ -37,7 +37,7 @@ module.exports = {
         allowNull: true,
         validate: {
           notEmpty: true,
-          isAlpha: true
+          is: /^[a-zA-Z\s]*$/i
         }
       },
       elo_rating: {

@@ -14,7 +14,7 @@ module.exports = {
         unique: true,
         validate: {
           notEmpty: true,
-          isAlpha: true
+          is: /^[a-zA-Z\s]*$/i
         }
       },
       city: {
@@ -22,7 +22,7 @@ module.exports = {
         allowNull: false,
         validate: {
           notEmpty: true,
-          isAlpha: true
+          is: /^[a-zA-Z\s]*$/i
         }
       },
       country: {
@@ -30,7 +30,7 @@ module.exports = {
         allowNull: false,
         validate: {
           notEmpty: true,
-          isAlpha: true
+          is: /^[a-zA-Z\s]*$/i
         }
       },
       start_date: {

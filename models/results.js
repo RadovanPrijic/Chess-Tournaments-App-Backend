@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
       validate: {
         notEmpty: true,
-        isAlpha: true
+        is: /^[a-zA-Z\s]*$/i
       }
     },
     elo_change: {
@@ -52,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
       validate: {
         notEmpty: true,
-        isAlpha: true
+        is: /^[a-zA-Z\s]*$/i
       }
     },
   }, {

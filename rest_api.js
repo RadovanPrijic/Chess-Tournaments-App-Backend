@@ -18,11 +18,6 @@ app.use('/admin', results);
 //app.use(express.static(path.join(__dirname, 'static'))); 
 // Ovo je za komunikaciju sa GUI-jem posle.
 
-/* const sequelize = new Sequelize('chess_database', 'root', null, {
-    host: '127.0.0.1',
-    dialect: 'mysql'
-}); */
-
 sequelize.authenticate()
     .then(() => console.log('Database connected.'))
     .catch(err => console.log('Error: ' + err));
