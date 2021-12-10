@@ -2,14 +2,18 @@
 module.exports = {
   up: async (queryInterface, DataTypes) => {
     await queryInterface.createTable('Results', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER
+      },
       userId: {
         type: DataTypes.INTEGER,
-        primaryKey: true,
         allowNull: false
       },
       tournamentId: {
         type: DataTypes.INTEGER,
-        primaryKey: true,
         allowNull: false
       }, 
       ranking: {
