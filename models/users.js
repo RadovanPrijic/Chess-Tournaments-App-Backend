@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notEmpty: true,
-        isAlpha: true
+        is: /^[a-zA-Z\s]*$/i
       }
     }, 
     last_name: {
@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notEmpty: true,
-        isAlpha: true
+        is: /^[a-zA-Z\s]*$/i
       }
     },
     birth_date: {
