@@ -42,7 +42,7 @@ module.exports = {
       },
       elo_rating: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         validate: {
           isInt: true,
           max: 3000   
