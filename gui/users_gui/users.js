@@ -2,7 +2,8 @@ const cookies = document.cookie.split('=');
 const token = cookies[cookies.length - 1];
 
 function getAllUsers(){
-    fetch('http://127.0.0.1:5000/api/users', {mode: 'cors', 
+    fetch('http://127.0.0.1:5000/api/users', {
+        mode: 'cors', 
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -13,9 +14,8 @@ function getAllUsers(){
                 const lst = document.getElementById('usrLst');
                 
                 data.forEach( el => {
-                    lst.innerHTML += `<li>ID: ${el.id}, Ime: ${el.first_name}, Prezime: ${el.last_name}, 
-                        Datum rodjenja: ${el.birth_date}, Prebivaliste: ${el.country_of_residence}, 
-                            ELO: ${el.elo_rating}</li>`;
+                    lst.innerHTML += `<li>ID: ${el.id}, Ime: ${el.first_name}, Prezime: ${el.last_name},  
+                        ELO: ${el.elo_rating}</li>`;
             });
         });
 }

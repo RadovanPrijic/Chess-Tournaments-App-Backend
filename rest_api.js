@@ -20,7 +20,6 @@ app.use('/api', organisers);
 app.use('/api', results);
 app.use('/auth', auth);
 
-
 //TODO VALIDACIJA NA FRONTENDU
 //TODO SAZNATI KOJE RUTE MORAJU IMATI ADMIN PREFIKS
 
@@ -42,14 +41,18 @@ function authToken(req, res, next) {
     const cookies = getCookies(req);
     const token = cookies['token'];
   
-    if (token == null) return res.status(401).json({ msg: err });
+    if (token == null) return res.redirect(301, '/login');
   
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-        if (err) return res.status(403).json({ msg: err });
+        if (err) return res.redirect(301, '/login');
         req.user = user;
         next();
     });
 }
+
+app.get('/login', (req, res) => {
+    res.sendFile('login.html', { root: './gui' });
+});
 
 app.get('/', authToken, (req, res) => {
     res.sendFile('homepage.html', { root: './gui' });

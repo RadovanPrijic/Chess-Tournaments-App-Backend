@@ -57,7 +57,7 @@ app.post('/login', (req, res) => {
 
                 const token = jwt.sign(obj, process.env.ACCESS_TOKEN_SECRET);
                 res.json({ token: token });
-
+                
             } else {
                 res.status(400).json({ msg: "Uneseni kredencijali nisu validni."});
             }
