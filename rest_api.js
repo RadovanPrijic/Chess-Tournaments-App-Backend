@@ -12,13 +12,13 @@ const users = require('./routes/users');
 const tournaments = require('./routes/tournaments');
 const organisers = require('./routes/organisers');
 const results = require('./routes/results');
-const auth = require('./auth');
+//const auth = require('./auth');
 
 app.use('/api', users);
 app.use('/api', tournaments);
 app.use('/api', organisers);
 app.use('/api', results);
-app.use('/auth', auth);
+//app.use('/auth', auth);
 
 //TODO VALIDACIJA NA FRONTENDU
 //TODO SAZNATI KOJE RUTE MORAJU IMATI ADMIN PREFIKS
@@ -38,6 +38,7 @@ function getCookies(req) {
 };
 
 function authToken(req, res, next) {
+    console.log(req);
     const cookies = getCookies(req);
     const token = cookies['token'];
   
@@ -50,9 +51,15 @@ function authToken(req, res, next) {
     });
 }
 
+app.get('/register', (req, res) => {
+    res.sendFile('register.html', { root: './gui' });
+}); 
+
 app.get('/login', (req, res) => {
     res.sendFile('login.html', { root: './gui' });
-});
+}); 
+
+//app.use((_, res) => res.redirect("/"));
 
 app.get('/', authToken, (req, res) => {
     res.sendFile('homepage.html', { root: './gui' });

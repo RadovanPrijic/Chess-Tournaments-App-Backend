@@ -3,7 +3,6 @@ const { sequelize, Users } = require('./models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
-const route = express.Router();
 require('dotenv').config();
 const PORT = 6000;
 const app = express();
@@ -72,5 +71,3 @@ sequelize.authenticate()
 app.listen(PORT, () => {
     console.log(`Server je pokrenut: http://localhost:${PORT}`)
 });
-
-module.exports = route;
