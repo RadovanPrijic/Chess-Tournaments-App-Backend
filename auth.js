@@ -3,6 +3,7 @@ const { sequelize, Users } = require('./models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
+const route = express.Router();
 require('dotenv').config();
 const PORT = 6000;
 const app = express();
@@ -17,7 +18,7 @@ app.use(cors(corsOptions));
 
 app.post('/register', (req, res) => {
 
-    const obj = {                                //Ovde mozda treba dodati validaciju! Testirati.
+    const obj = {
         first_name: req.body.first_name,
         last_name: req.body.last_name,
         birth_date: req.body.birth_date,
@@ -29,12 +30,6 @@ app.post('/register', (req, res) => {
         moderator: req.body.moderator,
         player: req.body.player
     };
-
-    const oldUser = await Users.findOne({ username });
-
-    if (oldUser) {
-        return res.status(409).send("Korisnik sa datim korisnickim imenom vec postoji.");
-    }
 
     Users.create(obj).then( rows => {
         
@@ -77,3 +72,5 @@ sequelize.authenticate()
 app.listen(PORT, () => {
     console.log(`Server je pokrenut: http://localhost:${PORT}`)
 });
+
+module.exports = route;

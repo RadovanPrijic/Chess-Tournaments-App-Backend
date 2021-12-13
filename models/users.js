@@ -66,10 +66,6 @@ module.exports = (sequelize, DataTypes) => {
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        isAlphanumeric: true,
-        len: [8,30]
-      }
     },
     admin: {
       type: DataTypes.BOOLEAN,

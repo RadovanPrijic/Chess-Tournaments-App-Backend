@@ -2,21 +2,27 @@ const express = require('express');
 const path = require('path');
 const { sequelize } = require('./models');
 const jwt = require('jsonwebtoken');
+const cors = require('cors')
 require('dotenv').config();
 const PORT = 5000;
 const app = express();
-//const bodyParser = require('body-parser');
-//app.use(bodyParser.json());
+app.use(cors());
 
-const users = require('./routes/users'); //MISLIM DA OVE RUTE NECE TREBATI BITI /ADMIN, NEGO SAMO GUI RUTE
+const users = require('./routes/users');
 const tournaments = require('./routes/tournaments');
 const organisers = require('./routes/organisers');
 const results = require('./routes/results');
+const auth = require('./auth');
+
 app.use('/api', users);
 app.use('/api', tournaments);
 app.use('/api', organisers);
 app.use('/api', results);
+app.use('/auth', auth);
 
+
+//TODO VALIDACIJA NA FRONTENDU
+//TODO SAZNATI KOJE RUTE MORAJU IMATI ADMIN PREFIKS
 
 function getCookies(req) {
     if (req.headers.cookie == null) return {};
@@ -45,17 +51,11 @@ function authToken(req, res, next) {
     });
 }
 
-/*
 app.get('/', authToken, (req, res) => {
-    res.sendFile('index.html', { root: './static' });
-});  */
-    
-/*
-app.get('/', authToken, (req, res) => {
-    res.send('Dobrodosli!')
-}); */
+    res.sendFile('homepage.html', { root: './gui' });
+}); 
 
-//app.use(express.static(path.join(__dirname, 'static'))); //I OVDE MOZE AUTHTOKEN DA SE STAVI
+app.use(express.static(path.join(__dirname, 'gui')));
 
 sequelize.authenticate()
     .then(() => console.log('Konektovani ste na bazu.'))

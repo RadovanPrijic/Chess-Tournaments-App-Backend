@@ -59,26 +59,22 @@ module.exports = {
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          isAlphanumeric: true,
-          len: [8,30]
-        }
+        allowNull: false
       },
       admin: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: false,
+        defaultValue: false
       },
       moderator: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: false,
+        defaultValue: false
       },
       player: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: true,
+        defaultValue: true
       },
       createdAt: {
         allowNull: false,
