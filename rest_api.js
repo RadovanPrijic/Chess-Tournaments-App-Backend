@@ -50,9 +50,10 @@ app.get('/', authToken, (req, res) => {
     res.sendFile('index.html', { root: './static' });
 });  */
     
+/*
 app.get('/', authToken, (req, res) => {
     res.send('Dobrodosli!')
-});
+}); */
 
 //app.use(express.static(path.join(__dirname, 'static'))); //I OVDE MOZE AUTHTOKEN DA SE STAVI
 
