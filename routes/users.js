@@ -19,10 +19,10 @@ function authToken(req, res, next) {
     });
 }
 
-route.use(authToken);
+//route.use(authToken);
 
 route.get('/users', (req, res) => {
-
+    /*
     Users.findOne({ where: { id: req.user.userId } })
         .then( usr => {
             Users.findAll()
@@ -30,16 +30,16 @@ route.get('/users', (req, res) => {
                 .catch( err => res.status(500).json(err) );
         })
         .catch( err => res.status(500).json(err) );
-
-    /*
+    */
+    
     Users.findAll()
         .then( rows => res.json(rows) )
-        .catch( err => res.status(500).json(err) ); */
+        .catch( err => res.status(500).json(err) ); 
     
 });
 
 route.get('/users/:id', (req, res) => {
-
+    /*
     Users.findOne({ where: { id: req.user.userId } })
         .then( usr => {
             Users.findOne({ where: { id: req.params.id } })
@@ -47,16 +47,16 @@ route.get('/users/:id', (req, res) => {
                 .catch( err => res.status(500).json(err) );
         })
         .catch( err => res.status(500).json(err) );
+    */
 
-    /*
     Users.findOne({ where: { id: req.params.id } })
         .then( rows => res.json(rows) )
-        .catch( err => res.status(500).json(err) ); */
+        .catch( err => res.status(500).json(err) );
 
 });
 
 route.post('/users', (req, res) => {
-    
+    /*
     Users.findOne({ where: { id: req.user.userId } })
         .then( usr => {
             if (usr.admin) {
@@ -79,8 +79,8 @@ route.post('/users', (req, res) => {
             }
         })
         .catch( err => res.status(500).json(err) );
+    */
 
-        /*
     Users.create({ 
         first_name: req.body.first_name,
         last_name: req.body.last_name,
@@ -94,12 +94,12 @@ route.post('/users', (req, res) => {
         player: req.body.player
     })
         .then( rows => res.json(rows) )
-        .catch( err => res.status(500).json(err) ); */
+        .catch( err => res.status(500).json(err) );
 
 });
 
 route.put('/users/:id', (req, res) => {
-    
+    /*
     Users.findOne({ where: { id: req.user.userId } })
         .then( usr => {
             if (usr.admin) {
@@ -126,8 +126,8 @@ route.put('/users/:id', (req, res) => {
             }
         })
         .catch( err => res.status(500).json(err) );
-
-    /*
+    */
+    
     Users.findOne({ where: { id: req.params.id } })
         .then( usr => {
             usr.first_name = req.body.first_name;
@@ -145,12 +145,12 @@ route.put('/users/:id', (req, res) => {
                 .then( rows => res.json(rows) )
                 .catch( err => res.status(500).json(err) );
         })
-        .catch( err => res.status(500).json(err) ); */
+        .catch( err => res.status(500).json(err) );
 
 });
 
 route.delete('/users/:id', (req, res) => {
-
+    /*
     Users.findOne({ where: { id: req.user.userId } })
         .then( usr => {
             if (usr.admin) {
@@ -166,15 +166,15 @@ route.delete('/users/:id', (req, res) => {
             }
         })
         .catch( err => res.status(500).json(err) );
-
-    /*    
+    */
+        
     Users.findOne({ where: { id: req.params.id } })
         .then( usr => {
             usr.destroy()
                 .then( rows => res.json(rows) )
                 .catch( err => res.status(500).json(err) );
         })
-        .catch( err => res.status(500).json(err) ); */
+        .catch( err => res.status(500).json(err) );
 });
 
 module.exports = route;

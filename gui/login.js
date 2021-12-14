@@ -8,7 +8,7 @@ function init() {
             password: document.getElementById('password').value
         };
 
-        fetch('http://localhost:6000/login', {
+        fetch('http://127.0.0.1:6000/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)

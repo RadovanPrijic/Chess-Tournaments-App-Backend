@@ -3,6 +3,8 @@ const { sequelize, Users } = require('./models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
+const { response } = require('express');
+const { cookie } = require('express/lib/response');
 require('dotenv').config();
 const PORT = 6000;
 const app = express();
@@ -43,7 +45,7 @@ app.post('/register', (req, res) => {
     }).catch( err => res.status(500).json(err) );
 });
 
-app.post('/login', (req, res) => {
+app.post('/login', (req, res ) => {
 
     Users.findOne({ where: { username: req.body.username } })
         .then( usr => {
