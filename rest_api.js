@@ -48,29 +48,28 @@ function authToken(req, res, next) {
     const cookies = getCookies(req);
     const token = cookies['token'];
   
-    if (token == null) return res.status(401).json({ msg: err });
-    //if (token == null) return res.redirect(301, '/login');
+    //if (token == null) return res.status(401).json({ msg: err });
+    if (token == null) return res.redirect(301, '/login');
   
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-        if (err) return res.status(403).json({ msg: err });
-        //if (err) return res.redirect(301, '/login');
+        //if (err) return res.status(403).json({ msg: err });
+        if (err) return res.redirect(301, '/login');
         req.user = user;
         next();
     });
 }
-/*
+
 app.get('/register', (req, res) => {
     res.sendFile('register.html', { root: './gui' });
-}); */
+});
 
-/*
 app.get('/login', (req, res) => {
     res.sendFile('login.html', { root: './gui' });
-}); */ 
+});
 
 //app.use((_, res) => res.redirect("/"));
 
-app.get('/', /*authToken,*/ (req, res) => {
+app.get('/', authToken, (req, res) => {
     res.sendFile('homepage.html', { root: './gui' });
 }); 
 

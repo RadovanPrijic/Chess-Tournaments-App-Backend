@@ -18,7 +18,10 @@ function init() {
 
         fetch('http://127.0.0.1:6000/register', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
             body: JSON.stringify(data)
         })
             .then( res => res.json() )

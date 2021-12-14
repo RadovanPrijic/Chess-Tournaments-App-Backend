@@ -3,8 +3,6 @@ const { sequelize, Users } = require('./models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
-const { response } = require('express');
-const { cookie } = require('express/lib/response');
 require('dotenv').config();
 const PORT = 6000;
 const app = express();
