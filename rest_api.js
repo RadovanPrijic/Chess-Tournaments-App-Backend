@@ -21,8 +21,11 @@ app.use('/api', organisers);
 app.use('/api', results);
 //app.use('/auth', auth);
 
-//TODO VALIDACIJA NA FRONTENDU
-//TODO SAZNATI KOJE RUTE MORAJU IMATI ADMIN PREFIKS
+//TODO Kozmeticke popravke u GUI-ju (ispisivanje atributa kako treba, ispis poruka gde treba)
+//TODO Validacija na front-endu
+//TODO Saznati koje rute moraju imati admin prefiks
+//TODO U rutama dodati provere za ID-jeve kada se dodaju rezultati i turniri
+//TODO Napraviti bolja ogranicenja za atribute (smisaona - npr. dodati min. ELO i slicno)
 
 function getCookies(req) {
     if (req.headers.cookie == null) return {};
