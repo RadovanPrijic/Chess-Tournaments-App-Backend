@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     birth_date: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false,
       validate: {
         notEmpty: true,
@@ -51,6 +51,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
       validate: {
         isInt: true,
+        min: 100,
         max: 3000   
       }
     },

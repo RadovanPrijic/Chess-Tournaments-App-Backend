@@ -21,11 +21,13 @@ app.use('/api', organisers);
 app.use('/api', results);
 //app.use('/auth', auth);
 
-//TODO Kozmeticke popravke u GUI-ju (ispisivanje atributa kako treba, ispis poruka gde treba)
+//TODO Dovrsiti GUI osnove - pravljenje HTML stranica i dodavanje funkcionalnosti
+//TODO U rutama kod pravljenja rezultata i turnira dodati provere za relevantne ID-jeve (da li postoje)
+//     Kod rezultata su to ID korisnika i turnira, a kod turnira je to ID organizatora
 //TODO Validacija na front-endu
-//TODO Saznati koje rute moraju imati admin prefiks
-//TODO U rutama dodati provere za ID-jeve kada se dodaju rezultati i turniri
-//TODO Napraviti bolja ogranicenja za atribute (smisaona - npr. dodati min. ELO i slicno)
+//TODO Na front-endu neka se ispisuju poruke o greskama
+//TODO Saznati koje rute moraju imati admin prefiks i dodati ga tamo
+//TODO Dovrsiti autentifikaciju, u najgorem slucaju samo sa prilepljenim tokenom
 
 function getCookies(req) {
     if (req.headers.cookie == null) return {};

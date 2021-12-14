@@ -25,11 +25,11 @@ module.exports = {
         }
       },
       prize: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL,
         allowNull: false,
         validate: {
           notEmpty: true,
-          isInt: true
+          isDecimal: true
         }
       },
       country_represented: {

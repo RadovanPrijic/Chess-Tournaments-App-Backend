@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     formation_date: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false,
       validate: {
         notEmpty: true,

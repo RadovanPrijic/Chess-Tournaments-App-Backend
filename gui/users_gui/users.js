@@ -14,7 +14,8 @@ function getAllUsers(){
                 
                 data.forEach( el => {
                     lst.innerHTML += `<li>ID: ${el.id}, Ime: ${el.first_name}, Prezime: ${el.last_name},  
-                        ELO: ${el.elo_rating}</li>`;
+                        Datum rođenja: ${el.birth_date}, Država prebivališta: ${el.country_of_residence},
+                            ELO: ${el.elo_rating}</li>`;
             });
         });
 }
@@ -34,7 +35,8 @@ function getUserById(){
                 const lst = document.getElementById('usrLst');
                 
                 lst.innerHTML += `<li>ID: ${data.id}, Ime: ${data.first_name}, Prezime: ${data.last_name},  
-                    ELO: ${data.elo_rating}</li>`;
+                    Datum rođenja: ${data.birth_date}, Država prebivališta: ${data.country_of_residence},
+                        ELO: ${data.elo_rating}</li>`;
         });
 }
 
@@ -82,7 +84,8 @@ function initPostUser(){
                     alert(el.msg);
                 } else {
                     document.getElementById('usrLst').innerHTML += `<li>ID: ${el.id}, Ime: ${el.first_name}, 
-                        Prezime: ${el.last_name}, ELO: ${el.elo_rating}</li>`;
+                        Prezime: ${el.last_name}, Datum rođenja: ${el.birth_date}, 
+                            Država prebivališta: ${el.country_of_residence}, ELO: ${el.elo_rating}</li>`;
                 }
             });
     });   
@@ -135,7 +138,8 @@ function initUpdateUser(){
                     alert(el.msg);
                 } else {
                     document.getElementById('usrLst').innerHTML += `<li>ID: ${el.id}, Ime: ${el.first_name}, 
-                        Prezime: ${el.last_name}, ELO: ${el.elo_rating}</li>`;
+                        Prezime: ${el.last_name}, Datum rođenja: ${el.birth_date}, 
+                            Država prebivališta: ${el.country_of_residence}, ELO: ${el.elo_rating}</li>`;
                 }
             });
     });   
@@ -157,6 +161,7 @@ function deleteUser(){
                 const lst = document.getElementById('usrLst');
                 
                 lst.innerHTML += `<li>ID: ${data.id}, Ime: ${data.first_name}, Prezime: ${data.last_name},  
-                    ELO: ${data.elo_rating}</li>`;
+                    Datum rođenja: ${data.birth_date}, Država prebivališta: ${data.country_of_residence},
+                        ELO: ${data.elo_rating}</li>`;
         });
 }

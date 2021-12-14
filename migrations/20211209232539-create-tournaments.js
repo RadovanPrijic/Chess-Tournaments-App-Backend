@@ -34,7 +34,7 @@ module.exports = {
         }
       },
       start_date: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false,
         validate: {
           notEmpty: true,
@@ -42,7 +42,7 @@ module.exports = {
         }
       },
       end_date: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false,
         validate: {
           notEmpty: true,
