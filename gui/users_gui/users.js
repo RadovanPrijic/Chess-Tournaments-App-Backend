@@ -142,5 +142,21 @@ function initUpdateUser(){
 }
 
 function deleteUser(){
+    const id = document.getElementById('userId').value;
 
+    fetch('http://127.0.0.1:5000/api/users/' + id, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+        .then( res => res.json() )
+            .then( data => {
+                document.getElementById("usrLst").innerHTML = "";
+                document.getElementById('userId').value = "";
+                const lst = document.getElementById('usrLst');
+                
+                lst.innerHTML += `<li>ID: ${data.id}, Ime: ${data.first_name}, Prezime: ${data.last_name},  
+                    ELO: ${data.elo_rating}</li>`;
+        });
 }
