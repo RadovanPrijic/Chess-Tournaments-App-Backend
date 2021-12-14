@@ -13,13 +13,11 @@ const users = require('./routes/users');
 const tournaments = require('./routes/tournaments');
 const organisers = require('./routes/organisers');
 const results = require('./routes/results');
-//const auth = require('./auth');
 
 app.use('/api', users);
 app.use('/api', tournaments);
 app.use('/api', organisers);
 app.use('/api', results);
-//app.use('/auth', auth);
 
 //TODO Dovrsiti GUI osnove - pravljenje HTML stranica i dodavanje funkcionalnosti
 //TODO U rutama kod pravljenja rezultata i turnira dodati provere za relevantne ID-jeve (da li postoje)
@@ -27,7 +25,7 @@ app.use('/api', results);
 //TODO Validacija na front-endu
 //TODO Na front-endu neka se ispisuju poruke o greskama
 //TODO Saznati koje rute moraju imati admin prefiks i dodati ga tamo
-//TODO Dovrsiti autentifikaciju, u najgorem slucaju samo sa prilepljenim tokenom
+//TODO Dovrsiti autentifikaciju, dodati logout dugme
 
 function getCookies(req) {
     if (req.headers.cookie == null) return {};
@@ -48,11 +46,9 @@ function authToken(req, res, next) {
     const cookies = getCookies(req);
     const token = cookies['token'];
   
-    //if (token == null) return res.status(401).json({ msg: err });
     if (token == null) return res.redirect(301, '/login');
   
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-        //if (err) return res.status(403).json({ msg: err });
         if (err) return res.redirect(301, '/login');
         req.user = user;
         next();
