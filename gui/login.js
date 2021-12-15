@@ -22,8 +22,5 @@ function init() {
                     window.location.href = 'homepage.html';
                 }
             })
-            .catch((error) => {
-                console.error('Greska:', error);
-            });
     });
 }

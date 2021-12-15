@@ -16,12 +16,10 @@ app.use('/admin', tournaments);
 app.use('/admin', organisers);
 app.use('/admin', results);
 
-//TODO Dovrsiti GUI osnove - pravljenje HTML stranica i dodavanje funkcionalnosti
 //TODO U rutama kod pravljenja rezultata i turnira dodati provere za relevantne ID-jeve (da li postoje)
 //     Kod rezultata su to ID korisnika i turnira, a kod turnira je to ID organizatora
-//TODO Validacija na front-endu
-//TODO Na front-endu neka se ispisuju poruke o greskama
-//TODO Provaliti zasto register i login ne funkcionisu kako treba
+//TODO Validacija na front-endu (Joi?)
+//TODO Ispisivanje poruka o greskama na front-endu
 
 function getCookies(req) {
     if (req.headers.cookie == null) return {};
@@ -62,7 +60,7 @@ app.get('/login', (req, res) => {
 
 app.get('/', authToken, (req, res) => {
     res.sendFile('homepage.html', { root: './gui' });
-}); 
+});
 
 app.use(express.static(path.join(__dirname, 'gui')));
 

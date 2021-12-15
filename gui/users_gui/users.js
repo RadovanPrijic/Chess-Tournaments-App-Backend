@@ -1,3 +1,5 @@
+const res = require("express/lib/response");
+
 const cookies = document.cookie.split('=');
 const token = cookies[cookies.length - 1];
 

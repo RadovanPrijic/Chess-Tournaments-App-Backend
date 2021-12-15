@@ -34,13 +34,13 @@ app.post('/register', (req, res) => {
         
         const usr = {
             userId: rows.id,
-            username: rows.username
+            user: rows.username
         };
 
         const token = jwt.sign(usr, process.env.ACCESS_TOKEN_SECRET);
         res.json({ token: token });
 
-    }).catch( err => res.status(500).json(err) );
+    }).catch( err => res.status(500).json( {msg: "Uneseni parametri nisu validni."} ) );
 });
 
 app.post('/login', (req, res ) => {
@@ -51,7 +51,7 @@ app.post('/login', (req, res ) => {
             if (bcrypt.compareSync(req.body.password, usr.password)) {
                 const obj = {
                     userId: usr.id,
-                    username: usr.username
+                    user: usr.username
                 };
 
                 const token = jwt.sign(obj, process.env.ACCESS_TOKEN_SECRET);
@@ -61,7 +61,7 @@ app.post('/login', (req, res ) => {
                 res.status(400).json({ msg: "Uneseni kredencijali nisu validni."});
             }
         })
-        .catch( err => res.status(500).json(err) );
+        .catch( err => res.status(500).json( {msg: "Uneseni kredencijali nisu validni."}) );
 });
 
 sequelize.authenticate()
