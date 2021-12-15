@@ -112,7 +112,7 @@ function initUpdateUser(){
         };
 
         document.getElementById('usrLst').innerHTML = "";
-        document.getElementById('user_id').value = "",
+        document.getElementById('user_id').value = "";
         document.getElementById('first_name').value = "";
         document.getElementById('last_name').value = "";
         document.getElementById('birth_date').value = "";

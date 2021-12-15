@@ -104,13 +104,14 @@ function initUpdateTournament(){
         };
 
         document.getElementById('trnmtLst').innerHTML = "";
-        document.getElementById('name').value;
-        document.getElementById('city').value;
-        document.getElementById('country').value;
-        document.getElementById('start_date').value;
-        document.getElementById('end_date').value;
-        document.getElementById('format').value;
-        document.getElementById('organiserId').value;
+        document.getElementById('trnmtId').value = "";
+        document.getElementById('name').value = "";
+        document.getElementById('city').value = "";
+        document.getElementById('country').value = "";
+        document.getElementById('start_date').value = "";
+        document.getElementById('end_date').value = "";
+        document.getElementById('format').value = "";
+        document.getElementById('organiserId').value = "";
 
         fetch('http://127.0.0.1:5000/admin/tournaments/' + id, {
             method: 'PUT',

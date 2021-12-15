@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+        <title>Dodavanje organizatora</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <script src="organisers.js"></script>
+    </head>
+    <body onload="initPostOrganiser()">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <form method="post" action="/admin/organisers">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Ime</label>
+                            <input type="text" class="form-control" id="name" name="name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formation_date" class="form-label">Datum osnivanja</label>
+                            <input type="date" class="form-control" id="formation_date" name="formation_date">
+                        </div>
+                        <div class="mb-3">
+                            <label for="president" class="form-label">Precednik</label>
+                            <input type="text" class="form-control" id="president" name="president">
+                        </div>
+                        <div class="mb-3">
+                            <label for="country" class="form-label">Država</label>
+                            <input type="text" class="form-control" id="country" name="country">
+                        </div>
+                        <div class="mb-3">
+                            <label for="website" class="form-label">Vebsajt</label>
+                            <input type="url" class="form-control" id="website" name="website">
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="btn">Pošalji</button>
+                    </form>
+                </div>
+                <hr>
+                <div class="col-6">
+                    <h2>Novi organizator:</h2>
+                    <ul id="orgLst"></ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
