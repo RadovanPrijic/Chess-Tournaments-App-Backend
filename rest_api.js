@@ -2,30 +2,26 @@ const express = require('express');
 const path = require('path');
 const { sequelize } = require('./models');
 const jwt = require('jsonwebtoken');
-const cors = require('cors')
 require('dotenv').config();
 const PORT = 5000;
 const app = express();
-app.use(cors());
-app.options('*', cors());
 
 const users = require('./routes/users');
 const tournaments = require('./routes/tournaments');
 const organisers = require('./routes/organisers');
 const results = require('./routes/results');
 
-app.use('/api', users);
-app.use('/api', tournaments);
-app.use('/api', organisers);
-app.use('/api', results);
+app.use('/admin', users);
+app.use('/admin', tournaments);
+app.use('/admin', organisers);
+app.use('/admin', results);
 
 //TODO Dovrsiti GUI osnove - pravljenje HTML stranica i dodavanje funkcionalnosti
 //TODO U rutama kod pravljenja rezultata i turnira dodati provere za relevantne ID-jeve (da li postoje)
 //     Kod rezultata su to ID korisnika i turnira, a kod turnira je to ID organizatora
 //TODO Validacija na front-endu
 //TODO Na front-endu neka se ispisuju poruke o greskama
-//TODO Saznati koje rute moraju imati admin prefiks i dodati ga tamo
-//TODO Dovrsiti autentifikaciju, dodati logout dugme
+//TODO Provaliti zasto register i login ne funkcionisu kako treba
 
 function getCookies(req) {
     if (req.headers.cookie == null) return {};
@@ -42,7 +38,6 @@ function getCookies(req) {
 };
 
 function authToken(req, res, next) {
-    console.log(req);
     const cookies = getCookies(req);
     const token = cookies['token'];
   
@@ -76,6 +71,6 @@ sequelize.authenticate()
     .catch(err => console.log('Greska: ' + err));
 
 app.listen(PORT, () => {
-    console.log(`Server je pokrenut: http://localhost:${PORT}`)
+    console.log(`Server je pokrenut: http://127.0.0.1:${PORT}`)
 });
 

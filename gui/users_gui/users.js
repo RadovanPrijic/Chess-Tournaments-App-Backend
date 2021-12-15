@@ -2,7 +2,7 @@ const cookies = document.cookie.split('=');
 const token = cookies[cookies.length - 1];
 
 function getAllUsers(){
-    fetch('http://127.0.0.1:5000/api/users', {
+    fetch('http://127.0.0.1:5000/admin/users', {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -23,7 +23,7 @@ function getAllUsers(){
 function getUserById(){
     const id = document.getElementById('userId').value;
 
-    fetch('http://127.0.0.1:5000/api/users/' + id, {
+    fetch('http://127.0.0.1:5000/admin/users/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -70,7 +70,7 @@ function initPostUser(){
         document.getElementById('moderator').value = "";
         document.getElementById('player').value = "";
 
-        fetch('http://127.0.0.1:5000/api/users', {
+        fetch('http://127.0.0.1:5000/admin/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -124,7 +124,7 @@ function initUpdateUser(){
         document.getElementById('moderator').value = "";
         document.getElementById('player').value = "";
 
-        fetch('http://127.0.0.1:5000/api/users/' + id, {
+        fetch('http://127.0.0.1:5000/admin/users/' + id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -148,7 +148,7 @@ function initUpdateUser(){
 function deleteUser(){
     const id = document.getElementById('userId').value;
 
-    fetch('http://127.0.0.1:5000/api/users/' + id, {
+    fetch('http://127.0.0.1:5000/admin/users/' + id, {
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${token}`

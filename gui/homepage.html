@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Homepage</title>
+        <title>Početna stranica</title>
         
         <meta charset="UTF-8">
         <link rel="stylesheet" href="styles.css">
+        <script src="homepage_script.js"></script>
     </head>
-        <body>
+        <body onload="initLogout()">
             <h1>
                 Dobrodošli!
             <h1>
@@ -19,6 +20,10 @@
                     type="button" id="organizatoriBtn">Organizatori</button>
                 <button onclick="document.location.href='./results_gui/results.html';"
                     type="button" id="rezultatiBtn">Rezultati</button>
-            </div> 
+            </div>
+            <hr>
+            <div class="btn-group">
+                <button type="button" id="logout" class="btn btn-primary">Odjavi se</button>
+            </div>
         </body>
 </html> 
