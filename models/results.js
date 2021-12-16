@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
+        notNull: true,
         notEmpty: true,
         isInt: true
       }
@@ -27,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DECIMAL,
       allowNull: false,
       validate: {
+        notNull: true,
         notEmpty: true,
         isDecimal: true
       }
@@ -43,6 +45,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
+        notNull: true,
         notEmpty: true,
         isInt: true
       }

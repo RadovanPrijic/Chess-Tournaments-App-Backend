@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
       validate: {
+        notNull: true,
         notEmpty: true,
         is: /^[a-zA-Z\s]*$/i
       }
@@ -27,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATEONLY,
       allowNull: false,
       validate: {
+        notNull: true,
         notEmpty: true,
         isDate: true 
       }
@@ -35,6 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
+        notNull: true,
         notEmpty: true,
         is: /^[a-zA-Z\s]*$/i
       }
@@ -43,6 +46,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
+        notNull: true,
         notEmpty: true,
         is: /^[a-zA-Z\s]*$/i
       }
@@ -52,6 +56,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
       unique: true,
       validate: {
+        notEmpty: true,
         isUrl: true
       }
     },

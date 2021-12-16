@@ -16,11 +16,6 @@ app.use('/admin', tournaments);
 app.use('/admin', organisers);
 app.use('/admin', results);
 
-//TODO U rutama kod pravljenja rezultata i turnira dodati provere za relevantne ID-jeve (da li postoje)
-//     Kod rezultata su to ID korisnika i turnira, a kod turnira je to ID organizatora
-//TODO Validacija na back-endu
-//TODO Ispisivanje poruka o greskama na front-endu
-
 function getCookies(req) {
     if (req.headers.cookie == null) return {};
 

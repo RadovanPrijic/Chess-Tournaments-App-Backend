@@ -12,6 +12,7 @@ module.exports = {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
+          notNull: true,
           notEmpty: true,
           is: /^[a-zA-Z\s]*$/i
         }
@@ -20,6 +21,7 @@ module.exports = {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
+          notNull: true,
           notEmpty: true,
           is: /^[a-zA-Z\s]*$/i
         }
@@ -28,6 +30,7 @@ module.exports = {
         type: DataTypes.DATEONLY,
         allowNull: false,
         validate: {
+          notNull: true,
           notEmpty: true,
           isDate: true 
         }
@@ -54,28 +57,41 @@ module.exports = {
         allowNull: false,
         unique: true,
         validate: {
+          notNull: true,
           isAlphanumeric: true,
           len: [6,20]
         }
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          notNull: true
+        }
       },
       admin: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: false
+        defaultValue: false,
+        validate: {
+          notNull: true
+        }
       },
       moderator: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: false
+        defaultValue: false,
+        validate: {
+          notNull: true
+        }
       },
       player: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: true
+        defaultValue: true,
+        validate: {
+          notNull: true
+        }
       },
       createdAt: {
         allowNull: false,

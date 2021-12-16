@@ -72,7 +72,7 @@ route.post('/tournaments', (req, res) => {
                     .then( rows => res.json(rows) )
                     .catch( err => res.status(500).json(err) );
             } else {
-                res.status(403).json({ msg: "Uneseni kredencijali nisu validni."});
+                res.status(403).json({ msg: "Nemate pravo na ovu akciju."});
             }
         })
         .catch( err => res.status(500).json(err) );
@@ -112,7 +112,7 @@ route.put('/tournaments/:id', (req, res) => {
                     })
                     .catch( err => res.status(500).json(err) );
             } else {
-                res.status(403).json({ msg: "Uneseni kredencijali nisu validni."});
+                res.status(403).json({ msg: "Nemate pravo na ovu akciju."});
             }
         })
         .catch( err => res.status(500).json(err) );
@@ -148,7 +148,7 @@ route.delete('/tournaments/:id', (req, res) => {
                     })
                     .catch( err => res.status(500).json(err) );
             } else {
-                res.status(403).json({ msg: "Uneseni kredencijali nisu validni."});
+                res.status(403).json({ msg: "Nemate pravo na ovu akciju."});
             }
         })
         .catch( err => res.status(500).json(err) );

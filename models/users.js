@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
+        notNull: true,
         notEmpty: true,
         is: /^[a-zA-Z\s]*$/i
       }
@@ -26,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
+        notNull: true,
         notEmpty: true,
         is: /^[a-zA-Z\s]*$/i
       }
@@ -34,6 +36,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATEONLY,
       allowNull: false,
       validate: {
+        notNull: true,
         notEmpty: true,
         isDate: true 
       }
@@ -60,6 +63,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
       validate: {
+        notNull: true,
         isAlphanumeric: true,
         len: [6,20]
       }
@@ -67,25 +71,49 @@ module.exports = (sequelize, DataTypes) => {
     password: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        notNull: true
+      }
     },
     admin: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,
+      validate: {
+        notNull: true
+      }
     },
     moderator: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,
+      validate: {
+        notNull: true
+      }
     },
     player: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true,
+      validate: {
+        notNull: true
+      }
     },
   }, {
     sequelize,
     modelName: 'Users',
+    validate: {
+      adminOrModerator() {
+        if (this.admin === true && this.moderator === true) {
+          throw new Error('Admin ne može biti istovremeno i moderator, i obrnuto.');
+        }
+      },
+      eloAndPlayer() {
+        if ((this.elo_rating !== null && this.player === false) || (this.elo_rating === null && this.player === true)) {
+          throw new Error('Igrač mora imati ELO rejting, a ELO rejting ne može imati neko ko nije igrač.');
+        }
+      }
+    }
   });
   return Users;
 };

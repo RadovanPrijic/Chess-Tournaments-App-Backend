@@ -11,9 +11,9 @@ function init() {
             elo_rating: document.getElementById('elo_rating').value,
             username: document.getElementById('username').value,
             password: document.getElementById('password').value,
-            admin: document.getElementById('admin').value,
-            moderator: document.getElementById('moderator').value,
-            player: document.getElementById('player').value,
+            admin: document.getElementById('admin').checked,
+            moderator: document.getElementById('moderator').checked,
+            player: document.getElementById('player').checked,
         };
 
         fetch('http://127.0.0.1:9000/register', {

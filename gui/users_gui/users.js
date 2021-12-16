@@ -1,5 +1,3 @@
-const res = require("express/lib/response");
-
 const cookies = document.cookie.split('=');
 const token = cookies[cookies.length - 1];
 
@@ -55,9 +53,9 @@ function initPostUser(){
             elo_rating: document.getElementById('elo_rating').value,
             username: document.getElementById('username').value,
             password: document.getElementById('password').value,
-            admin: document.getElementById('admin').value,
-            moderator: document.getElementById('moderator').value,
-            player: document.getElementById('player').value
+            admin: document.getElementById('admin').checked,
+            moderator: document.getElementById('moderator').checked,
+            player: document.getElementById('player').checked
         };
 
         document.getElementById('usrLst').innerHTML = "";
@@ -68,9 +66,9 @@ function initPostUser(){
         document.getElementById('elo_rating').value = "";
         document.getElementById('username').value = "";
         document.getElementById('password').value = "";
-        document.getElementById('admin').value = "";
-        document.getElementById('moderator').value = "";
-        document.getElementById('player').value = "";
+        document.getElementById('admin').checked = false;
+        document.getElementById('moderator').checked = false;
+        document.getElementById('player').checked = false;
 
         fetch('http://127.0.0.1:5000/admin/users', {
             method: 'POST',
@@ -108,9 +106,9 @@ function initUpdateUser(){
             elo_rating: document.getElementById('elo_rating').value,
             username: document.getElementById('username').value,
             password: document.getElementById('password').value,
-            admin: document.getElementById('admin').value,
-            moderator: document.getElementById('moderator').value,
-            player: document.getElementById('player').value
+            admin: document.getElementById('admin').checked,
+            moderator: document.getElementById('moderator').checked,
+            player: document.getElementById('player').checked
         };
 
         document.getElementById('usrLst').innerHTML = "";
@@ -122,9 +120,9 @@ function initUpdateUser(){
         document.getElementById('elo_rating').value = "";
         document.getElementById('username').value = "";
         document.getElementById('password').value = "";
-        document.getElementById('admin').value = "";
-        document.getElementById('moderator').value = "";
-        document.getElementById('player').value = "";
+        document.getElementById('admin').checked = false;
+        document.getElementById('moderator').checked = false;
+        document.getElementById('player').checked = false;
 
         fetch('http://127.0.0.1:5000/admin/users/' + id, {
             method: 'PUT',
@@ -165,5 +163,5 @@ function deleteUser(){
                 lst.innerHTML += `<li>ID: ${data.id}, Ime: ${data.first_name}, Prezime: ${data.last_name},  
                     Datum rođenja: ${data.birth_date}, Država prebivališta: ${data.country_of_residence},
                         ELO: ${data.elo_rating}</li>`;
-        });
+            });
 }

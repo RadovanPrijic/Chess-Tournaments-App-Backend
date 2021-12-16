@@ -13,6 +13,7 @@ module.exports = {
         allowNull: false,
         unique: true,
         validate: {
+          notNull: true,
           notEmpty: true,
           is: /^[a-zA-Z\s]*$/i
         }
@@ -21,6 +22,7 @@ module.exports = {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
+          notNull: true,
           notEmpty: true,
           is: /^[a-zA-Z\s]*$/i
         }
@@ -29,6 +31,7 @@ module.exports = {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
+          notNull: true,
           notEmpty: true,
           is: /^[a-zA-Z\s]*$/i
         }
@@ -37,6 +40,7 @@ module.exports = {
         type: DataTypes.DATEONLY,
         allowNull: false,
         validate: {
+          notNull: true,
           notEmpty: true,
           isDate: true 
         }
@@ -45,6 +49,7 @@ module.exports = {
         type: DataTypes.DATEONLY,
         allowNull: false,
         validate: {
+          notNull: true,
           notEmpty: true,
           isDate: true 
         }
@@ -53,6 +58,7 @@ module.exports = {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
+          notNull: true,
           isIn: [['round-robin', 'Swiss system', 'elimination', 'Scheveningen system']]
         }
       },
