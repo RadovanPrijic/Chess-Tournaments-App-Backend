@@ -138,7 +138,11 @@ function deleteOrganiser(){
                 document.getElementById('orgId').value = "";
                 const lst = document.getElementById('orgLst');
                 
-                lst.innerHTML += `<li>ID: ${data.id}, Ime: ${data.name}, Datum osnivanja: ${data.formation_date},  
+                if(data.msg){
+                    alert(data.msg);
+                } else {
+                    lst.innerHTML += `<li>ID: ${data.id}, Ime: ${data.name}, Datum osnivanja: ${data.formation_date},  
                     Precednik: ${data.president}, Država: ${data.country}, Vebsajt: ${data.website}</li>`;
+                }  
         });
 }

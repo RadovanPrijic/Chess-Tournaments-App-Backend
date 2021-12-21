@@ -150,8 +150,12 @@ function deleteTournament(){
                 document.getElementById('trnmtId').value = "";
                 const lst = document.getElementById('trnmtLst');
                 
-                lst.innerHTML += `<li>ID: ${data.id}, Ime: ${data.name}, Grad: ${data.city},  
+                if(data.msg){
+                    alert(data.msg);
+                } else {
+                    lst.innerHTML += `<li>ID: ${data.id}, Ime: ${data.name}, Grad: ${data.city},  
                         Država: ${data.country}, Datum početka: ${data.start_date}, Datum završetka: ${data.end_date},
                             Format: ${data.format}, Organizatorov ID: ${data.organiserId}</li>`;
+                }
         });
 }

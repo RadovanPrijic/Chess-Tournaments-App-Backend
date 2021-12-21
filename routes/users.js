@@ -2,6 +2,7 @@ const express = require('express');
 const { sequelize, Users } = require('../models');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const { idSchema, userSchema } = require('../backend_validation.js');
 const route = express.Router();
 route.use(express.json());
 route.use(express.urlencoded({ extended: true }));
@@ -60,20 +61,27 @@ route.post('/users', (req, res) => {
     Users.findOne({ where: { id: req.user.userId } })
         .then( usr => {
             if (usr.admin) {
-                Users.create({ 
-                    first_name: req.body.first_name,
-                    last_name: req.body.last_name,
-                    birth_date: req.body.birth_date,
-                    country_of_residence: req.body.country_of_residence,
-                    elo_rating: req.body.elo_rating,
-                    username: req.body.username,
-                    password: req.body.password,
-                    admin: req.body.admin,
-                    moderator: req.body.moderator,
-                    player: req.body.player
-                })
-                    .then( rows => res.json(rows) )
-                    .catch( err => res.status(500).json(err) );
+                const result = userSchema.validate(req.body);
+                if(result.error){
+                    res.status(422).json({ msg: 'Greška u validaciji: ' + result.error.message })
+                }
+                else{
+                    Users.create({ 
+                        first_name: req.body.first_name,
+                        last_name: req.body.last_name,
+                        birth_date: req.body.birth_date,
+                        country_of_residence: req.body.country_of_residence,
+                        elo_rating: req.body.elo_rating,
+                        username: req.body.username,
+                        password: req.body.password,
+                        admin: req.body.admin,
+                        moderator: req.body.moderator,
+                        player: req.body.player
+                    })
+                        .then( rows => res.json(rows) )
+                        .catch( err => res.status(500).json(err) );
+                }
+                
             } else {
                 res.status(403).json({ msg: "Nemate pravo na ovu akciju."});
             }

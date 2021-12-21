@@ -152,9 +152,13 @@ function deleteResult(){
                 document.getElementById('resId').value = "";
                 const lst = document.getElementById('resLst');
                 
-                lst.innerHTML += `<li>ID: ${data.id}, Korisnički ID: ${data.userId}, ID turnira: ${data.tournamentId},  
+                if(data.msg){
+                    alert(data.msg);
+                } else {
+                    lst.innerHTML += `<li>ID: ${data.id}, Korisnički ID: ${data.userId}, ID turnira: ${data.tournamentId},  
                         Osvojeno mesto: ${data.ranking}, Nagrada (u dolarima): ${data.prize}, 
                             Država koju reprezentuje: ${data.country_represented}, 
                                 Promena ELO rejtinga: ${data.elo_change}, Trener: ${data.coach}</li>`;
+                }  
         });
 }

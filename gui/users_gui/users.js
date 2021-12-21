@@ -160,8 +160,12 @@ function deleteUser(){
                 document.getElementById('userId').value = "";
                 const lst = document.getElementById('usrLst');
                 
-                lst.innerHTML += `<li>ID: ${data.id}, Ime: ${data.first_name}, Prezime: ${data.last_name},  
-                    Datum rođenja: ${data.birth_date}, Država prebivališta: ${data.country_of_residence},
-                        ELO: ${data.elo_rating}</li>`;
+                if(data.msg){
+                    alert(data.msg);
+                } else {
+                    lst.innerHTML += `<li>ID: ${data.id}, Ime: ${data.first_name}, Prezime: ${data.last_name},  
+                        Datum rođenja: ${data.birth_date}, Država prebivališta: ${data.country_of_residence},
+                            ELO: ${data.elo_rating}</li>`;
+                }
             });
 }

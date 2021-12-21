@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
 require('dotenv').config();
+const { userSchema, loginSchema } = require('./backend_validation.js');
 const PORT = 9000;
 const app = express();
 

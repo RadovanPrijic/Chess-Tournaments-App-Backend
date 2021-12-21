@@ -2,6 +2,7 @@ const express = require('express');
 const { sequelize, Tournaments, Users } = require('../models');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const { idSchema, trnmtSchema } = require('../backend_validation.js');
 const route = express.Router();
 route.use(express.json());
 route.use(express.urlencoded({ extended: true }));
