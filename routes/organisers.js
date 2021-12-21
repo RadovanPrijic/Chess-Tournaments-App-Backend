@@ -43,9 +43,14 @@ route.get('/organisers/:id', (req, res) => {
 
     Users.findOne({ where: { id: req.user.userId } })
         .then( usr => {
-            Organisers.findOne({ where: { id: req.params.id } })
-                .then( rows => res.json(rows) )
-                .catch( err => res.status(500).json(err) );
+            const result = idSchema.validate(req.params);
+            if(result.error){
+                res.status(422).json({ msg: 'Greška u validaciji: ' + result.error.message });
+            } else {
+                Organisers.findOne({ where: { id: req.params.id } })
+                    .then( rows => res.json(rows) )
+                    .catch( err => res.status(500).json(err) ); 
+            }
         })
         .catch( err => res.status(500).json(err) );
     
@@ -61,15 +66,20 @@ route.post('/organisers', (req, res) => {
     Users.findOne({ where: { id: req.user.userId } })
         .then( usr => {
             if (usr.admin || usr.moderator) {
-                Organisers.create({ 
-                    name: req.body.name,
-                    formation_date: req.body.formation_date,
-                    president: req.body.president,
-                    country: req.body.country,
-                    website: req.body.website,
-                })
-                    .then( rows => res.json(rows) )
-                    .catch( err => res.status(500).json(err) );
+                const result = orgSchema.validate(req.body);
+                if(result.error){
+                    res.status(422).json({ msg: 'Greška u validaciji: ' + result.error.message });
+                } else {
+                    Organisers.create({ 
+                        name: req.body.name,
+                        formation_date: req.body.formation_date,
+                        president: req.body.president,
+                        country: req.body.country,
+                        website: req.body.website,
+                    })
+                        .then( rows => res.json(rows) )
+                        .catch( err => res.status(500).json(err) );
+                }
             } else {
                 res.status(403).json({ msg: "Nemate pravo na ovu akciju."});
             }
@@ -94,7 +104,15 @@ route.put('/organisers/:id', (req, res) => {
     Users.findOne({ where: { id: req.user.userId } })
         .then( usr => {
             if (usr.admin || usr.moderator) {
-                Organisers.findOne({ where: { id: req.params.id } })
+                const idResult = idSchema.validate(req.params);
+                const result = orgSchema.validate(req.body);
+
+                if(result.error){
+                    res.status(422).json({ msg: 'Greška u validaciji: ' + result.error.message});
+                } else if(idResult.error){
+                    res.status(422).json({ msg: 'Greška u validaciji: ' + idResult.error.message});
+                } else {
+                    Organisers.findOne({ where: { id: req.params.id } })
                     .then( org => {
                         org.name = req.body.name;
                         org.formation_date = req.body.formation_date;
@@ -107,6 +125,7 @@ route.put('/organisers/:id', (req, res) => {
                             .catch( err => res.status(500).json(err) );
                     })
                     .catch( err => res.status(500).json(err) );
+                }
             } else {
                 res.status(403).json({ msg: "Nemate pravo na ovu akciju."});
             }
@@ -135,13 +154,18 @@ route.delete('/organisers/:id', (req, res) => {
     Users.findOne({ where: { id: req.user.userId } })
         .then( usr => {
             if (usr.admin || usr.moderator) {
-                Organisers.findOne({ where: { id: req.params.id } })
+                const result = idSchema.validate(req.params);
+                if(result.error){
+                    res.status(422).json({ msg: 'Greška u validaciji: ' + result.error.message });
+                } else {
+                    Organisers.findOne({ where: { id: req.params.id } })
                     .then( org => {
                         org.destroy()
                             .then( rows => res.json(rows) )
                             .catch( err => res.status(500).json(err) );
                     })
                     .catch( err => res.status(500).json(err) );
+                }
             } else {
                 res.status(403).json({ msg: "Nemate pravo na ovu akciju."});
             }

@@ -43,9 +43,14 @@ route.get('/results/:id', (req, res) => {
 
     Users.findOne({ where: { id: req.user.userId } })
         .then( usr => {
-            Results.findOne({ where: { id: req.params.id }, include: ['user','tournament'] })
-                .then( rows => res.json(rows) )
-                .catch( err => res.status(500).json(err) );
+            const result = idSchema.validate(req.params);
+            if(result.error){
+                res.status(422).json({ msg: 'Greška u validaciji: ' + result.error.message });
+            } else {
+                Results.findOne({ where: { id: req.params.id }, include: ['user','tournament'] })
+                    .then( rows => res.json(rows) )
+                    .catch( err => res.status(500).json(err) ); 
+            }
         })
         .catch( err => res.status(500).json(err) );
 
@@ -61,17 +66,22 @@ route.post('/results', (req, res) => {
     Users.findOne({ where: { id: req.user.userId } })
         .then( usr => {
             if (usr.admin || usr.moderator) {
-                Results.create({
-                    userId: req.body.userId,
-                    tournamentId: req.body.tournamentId,
-                    ranking: req.body.ranking,
-                    prize: req.body.prize,
-                    country_represented: req.body.country_represented,
-                    elo_change: req.body.elo_change,
-                    coach: req.body.coach
-                })
-                    .then( rows => res.json(rows) )
-                    .catch( err => res.status(500).json(err) );
+                const result = resultSchema.validate(req.body);
+                if(result.error){
+                    res.status(422).json({ msg: 'Greška u validaciji: ' + result.error.message });
+                } else {
+                    Results.create({
+                        userId: req.body.userId,
+                        tournamentId: req.body.tournamentId,
+                        ranking: req.body.ranking,
+                        prize: req.body.prize,
+                        country_represented: req.body.country_represented,
+                        elo_change: req.body.elo_change,
+                        coach: req.body.coach
+                    })
+                        .then( rows => res.json(rows) )
+                        .catch( err => res.status(500).json(err) );
+                }
             } else {
                 res.status(403).json({ msg: "Nemate pravo na ovu akciju."});
             }
@@ -98,7 +108,15 @@ route.put('/results/:id', (req, res) => {
     Users.findOne({ where: { id: req.user.userId } })
         .then( usr => {
             if (usr.admin || usr.moderator) {
-                Results.findOne({ where: { id: req.params.id }, include: ['user','tournament'] })
+                const idResult = idSchema.validate(req.params);
+                const result = resultSchema.validate(req.body);
+
+                if(result.error){
+                    res.status(422).json({ msg: 'Greška u validaciji: ' + result.error.message});
+                } else if(idResult.error){
+                    res.status(422).json({ msg: 'Greška u validaciji: ' + idResult.error.message});
+                } else {
+                    Results.findOne({ where: { id: req.params.id }, include: ['user','tournament'] })
                     .then( result => {
                         result.userId = req.body.userId;
                         result.tournamentId = req.body.tournamentId;
@@ -113,6 +131,7 @@ route.put('/results/:id', (req, res) => {
                             .catch( err => res.status(500).json(err) );
                     })
                     .catch( err => res.status(500).json(err) );
+                }
             } else {
                 res.status(403).json({ msg: "Nemate pravo na ovu akciju."});
             }
@@ -143,13 +162,18 @@ route.delete('/results/:id', (req, res) => {
     Users.findOne({ where: { id: req.user.userId } })
         .then( usr => {
             if (usr.admin || usr.moderator) {
-                Results.findOne({ where: { id: req.params.id }, include: ['user','tournament'] })
+                const result = idSchema.validate(req.params);
+                if(result.error){
+                    res.status(422).json({ msg: 'Greška u validaciji: ' + result.error.message });
+                } else {
+                    Results.findOne({ where: { id: req.params.id }, include: ['user','tournament'] })
                     .then( result => {
                         result.destroy()
                             .then( rows => res.json(rows) )
                             .catch( err => res.status(500).json(err) );
                     })
                     .catch( err => res.status(500).json(err) );
+                }
             } else {
                 res.status(403).json({ msg: "Nemate pravo na ovu akciju."});
             }

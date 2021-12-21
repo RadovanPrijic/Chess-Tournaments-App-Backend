@@ -17,36 +17,47 @@ app.use(express.json());
 app.use(cors(corsOptions));
 
 app.post('/register', (req, res) => {
+    
+    const result = userSchema.validate(req.body);
 
-    const obj = {
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        birth_date: req.body.birth_date,
-        country_of_residence: req.body.country_of_residence,
-        elo_rating: req.body.elo_rating,
-        username: req.body.username,
-        password: bcrypt.hashSync(req.body.password, 10),
-        admin: req.body.admin,
-        moderator: req.body.moderator,
-        player: req.body.player
-    };
-
-    Users.create(obj).then( rows => {
-        
-        const usr = {
-            userId: rows.id,
-            user: rows.username
+    if(result.error){
+        res.status(422).json({ msg: 'Greška u validaciji: ' + result.error.message });
+    } else {
+        const obj = {
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            birth_date: req.body.birth_date,
+            country_of_residence: req.body.country_of_residence,
+            elo_rating: req.body.elo_rating,
+            username: req.body.username,
+            password: bcrypt.hashSync(req.body.password, 10),
+            admin: req.body.admin,
+            moderator: req.body.moderator,
+            player: req.body.player
         };
 
-        const token = jwt.sign(usr, process.env.ACCESS_TOKEN_SECRET);
-        res.json({ token: token });
-
-    }).catch( err => res.status(500).json( {msg: "Uneseni parametri nisu validni."} ) );
+        Users.create(obj).then( rows => {
+        
+            const usr = {
+                userId: rows.id,
+                user: rows.username
+            };
+    
+            const token = jwt.sign(usr, process.env.ACCESS_TOKEN_SECRET);
+            res.json({ token: token });
+    
+        }).catch( err => res.status(500).json( {msg: "Uneseni parametri nisu validni."} ) );
+    }   
 });
 
 app.post('/login', (req, res ) => {
 
-    Users.findOne({ where: { username: req.body.username } })
+    const result = loginSchema.validate(req.body);
+
+    if(result.error){
+        res.status(422).json({ msg: 'Greška u validaciji: ' + result.error.message });
+    } else {
+        Users.findOne({ where: { username: req.body.username } })
         .then( usr => {
 
             if (bcrypt.compareSync(req.body.password, usr.password)) {
@@ -63,6 +74,7 @@ app.post('/login', (req, res ) => {
             }
         })
         .catch( err => res.status(500).json( {msg: "Uneseni kredencijali nisu validni."}) );
+    }
 });
 
 sequelize.authenticate()

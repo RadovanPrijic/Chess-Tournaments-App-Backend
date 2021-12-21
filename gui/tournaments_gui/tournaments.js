@@ -12,11 +12,15 @@ function getAllTournaments(){
                 document.getElementById("trnmtLst").innerHTML = "";
                 const lst = document.getElementById('trnmtLst');
                 
-                data.forEach( el => {
-                    lst.innerHTML += `<li>ID: ${el.id}, Ime: ${el.name}, Grad: ${el.city},  
-                        Država: ${el.country}, Datum početka: ${el.start_date}, Datum završetka: ${el.end_date},
-                            Format: ${el.format}, Organizatorov ID: ${el.organiserId}</li>`;
-            });
+                if(data.msg){
+                    alert(data.msg);
+                } else {
+                    data.forEach( el => {
+                        lst.innerHTML += `<li>ID: ${el.id}, Ime: ${el.name}, Grad: ${el.city},  
+                            Država: ${el.country}, Datum početka: ${el.start_date}, Datum završetka: ${el.end_date},
+                                Format: ${el.format}, Organizatorov ID: ${el.organiserId}</li>`;
+                    });
+                }
         });
 }
 
@@ -34,9 +38,13 @@ function getTournamentById(){
                 document.getElementById('trnmtId').value = "";
                 const lst = document.getElementById('trnmtLst');
                 
-                lst.innerHTML += `<li>ID: ${data.id}, Ime: ${data.name}, Grad: ${data.city},  
+                if(data.msg){
+                    alert(data.msg);
+                } else {
+                    lst.innerHTML += `<li>ID: ${data.id}, Ime: ${data.name}, Grad: ${data.city},  
                         Država: ${data.country}, Datum početka: ${data.start_date}, Datum završetka: ${data.end_date},
                             Format: ${data.format}, Organizatorov ID: ${data.organiserId}</li>`;
+                }
         });
 }
 

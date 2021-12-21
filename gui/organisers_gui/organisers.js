@@ -12,10 +12,14 @@ function getAllOrganisers(){
                 document.getElementById("orgLst").innerHTML = "";
                 const lst = document.getElementById('orgLst');
                 
-                data.forEach( el => {
-                    lst.innerHTML += `<li>ID: ${el.id}, Ime: ${el.name}, Datum osnivanja: ${el.formation_date},  
-                        Precednik: ${el.president}, Država: ${el.country}, Vebsajt: ${el.website}</li>`;
-            });
+                if(data.msg){
+                    alert(data.msg);
+                } else {
+                    data.forEach( el => {
+                        lst.innerHTML += `<li>ID: ${el.id}, Ime: ${el.name}, Datum osnivanja: ${el.formation_date},  
+                            Precednik: ${el.president}, Država: ${el.country}, Vebsajt: ${el.website}</li>`;
+                    });
+                }
         });
 }
 
@@ -33,8 +37,12 @@ function getOrganiserById(){
                 document.getElementById('orgId').value = "";
                 const lst = document.getElementById('orgLst');
                 
-                lst.innerHTML += `<li>ID: ${data.id}, Ime: ${data.name}, Datum osnivanja: ${data.formation_date},  
-                    Precednik: ${data.president}, Država: ${data.country}, Vebsajt: ${data.website}</li>`;
+                if(data.msg){
+                    alert(data.msg);
+                } else {
+                    lst.innerHTML += `<li>ID: ${data.id}, Ime: ${data.name}, Datum osnivanja: ${data.formation_date},  
+                        Precednik: ${data.president}, Država: ${data.country}, Vebsajt: ${data.website}</li>`;
+                }  
         });
 }
 
