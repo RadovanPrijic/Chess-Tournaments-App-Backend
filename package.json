@@ -2,9 +2,9 @@
   "name": "sj_javascript_prviprojekat",
   "version": "1.0.0",
   "description": "",
-  "main": "rest_api.js",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon rest_api.js"
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",

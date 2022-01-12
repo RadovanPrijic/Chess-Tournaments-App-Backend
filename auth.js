@@ -82,5 +82,5 @@ sequelize.authenticate()
     .catch(err => console.log('Greska: ' + err));
 
 app.listen(PORT, () => {
-    console.log(`Server je pokrenut: http://127.0.0.1:${PORT}`)
+    console.log(`Autentifikacioni servis je pokrenut: http://127.0.0.1:${PORT}`)
 });
