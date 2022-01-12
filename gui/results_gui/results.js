@@ -2,7 +2,7 @@ const cookies = document.cookie.split('=');
 const token = cookies[cookies.length - 1];
 
 function getAllResults(){
-    fetch('http://127.0.0.1:5000/admin/results', {
+    fetch('http://127.0.0.1:8000/admin/results', {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -28,7 +28,7 @@ function getAllResults(){
 function getResultById(){
     const id = document.getElementById('resId').value;
 
-    fetch('http://127.0.0.1:5000/admin/results/' + id, {
+    fetch('http://127.0.0.1:8000/admin/results/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -74,7 +74,7 @@ function initPostResult(){
         document.getElementById('elo_change').value = "";
         document.getElementById('coach').value = "";
 
-        fetch('http://127.0.0.1:5000/admin/results', {
+        fetch('http://127.0.0.1:8000/admin/results', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -123,7 +123,7 @@ function initUpdateResult(){
         document.getElementById('elo_change').value = "";
         document.getElementById('coach').value = "";
 
-        fetch('http://127.0.0.1:5000/admin/results/' + id, {
+        fetch('http://127.0.0.1:8000/admin/results/' + id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -148,7 +148,7 @@ function initUpdateResult(){
 function deleteResult(){
     const id = document.getElementById('resId').value;
 
-    fetch('http://127.0.0.1:5000/admin/results/' + id, {
+    fetch('http://127.0.0.1:8000/admin/results/' + id, {
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${token}`

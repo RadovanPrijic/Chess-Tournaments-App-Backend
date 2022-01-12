@@ -2,7 +2,7 @@ const cookies = document.cookie.split('=');
 const token = cookies[cookies.length - 1];
 
 function getAllUsers(){
-    fetch('http://127.0.0.1:5000/admin/users', {
+    fetch('http://127.0.0.1:8000/admin/users', {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -27,7 +27,7 @@ function getAllUsers(){
 function getUserById(){
     const id = document.getElementById('userId').value;
 
-    fetch('http://127.0.0.1:5000/admin/users/' + id, {
+    fetch('http://127.0.0.1:8000/admin/users/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -78,7 +78,7 @@ function initPostUser(){
         document.getElementById('moderator').checked = false;
         document.getElementById('player').checked = false;
 
-        fetch('http://127.0.0.1:5000/admin/users', {
+        fetch('http://127.0.0.1:8000/admin/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -132,7 +132,7 @@ function initUpdateUser(){
         document.getElementById('moderator').checked = false;
         document.getElementById('player').checked = false;
 
-        fetch('http://127.0.0.1:5000/admin/users/' + id, {
+        fetch('http://127.0.0.1:8000/admin/users/' + id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -156,7 +156,7 @@ function initUpdateUser(){
 function deleteUser(){
     const id = document.getElementById('userId').value;
 
-    fetch('http://127.0.0.1:5000/admin/users/' + id, {
+    fetch('http://127.0.0.1:8000/admin/users/' + id, {
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${token}`
