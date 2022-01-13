@@ -3,7 +3,7 @@ const path = require('path');
 const { sequelize } = require('./models');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const PORT = 5000;
+const PORT = 8200;
 
 const app = express();
 

@@ -2,7 +2,7 @@ const cookies = document.cookie.split('=');
 const token = cookies[cookies.length - 1];
 
 function getAllTournaments(){
-    fetch('http://127.0.0.1:8000/admin/tournaments', {
+    fetch('http://127.0.0.1:8500/admin/tournaments', {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -27,7 +27,7 @@ function getAllTournaments(){
 function getTournamentById(){
     const id = document.getElementById('trnmtId').value;
 
-    fetch('http://127.0.0.1:8000/admin/tournaments/' + id, {
+    fetch('http://127.0.0.1:8500/admin/tournaments/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -72,7 +72,7 @@ function initPostTournament(){
         document.getElementById('format').value;
         document.getElementById('organiserId').value;
 
-        fetch('http://127.0.0.1:8000/admin/tournaments', {
+        fetch('http://127.0.0.1:8500/admin/tournaments', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -121,7 +121,7 @@ function initUpdateTournament(){
         document.getElementById('format').value = "";
         document.getElementById('organiserId').value = "";
 
-        fetch('http://127.0.0.1:8000/admin/tournaments/' + id, {
+        fetch('http://127.0.0.1:8500/admin/tournaments/' + id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -146,7 +146,7 @@ function initUpdateTournament(){
 function deleteTournament(){
     const id = document.getElementById('trnmtId').value;
 
-    fetch('http://127.0.0.1:8000/admin/tournaments/' + id, {
+    fetch('http://127.0.0.1:8500/admin/tournaments/' + id, {
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${token}`

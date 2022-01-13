@@ -2,7 +2,7 @@ const cookies = document.cookie.split('=');
 const token = cookies[cookies.length - 1];
 
 function getAllOrganisers(){
-    fetch('http://127.0.0.1:8000/admin/organisers', {
+    fetch('http://127.0.0.1:8500/admin/organisers', {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -26,7 +26,7 @@ function getAllOrganisers(){
 function getOrganiserById(){
     const id = document.getElementById('orgId').value;
 
-    fetch('http://127.0.0.1:8000/admin/organisers/' + id, {
+    fetch('http://127.0.0.1:8500/admin/organisers/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -66,7 +66,7 @@ function initPostOrganiser(){
         document.getElementById('country').value = "";
         document.getElementById('website').value = "";
 
-        fetch('http://127.0.0.1:8000/admin/organisers', {
+        fetch('http://127.0.0.1:8500/admin/organisers', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -110,7 +110,7 @@ function initUpdateOrganiser(){
         document.getElementById('country').value = "";
         document.getElementById('website').value = "";
 
-        fetch('http://127.0.0.1:8000/admin/organisers/' + id, {
+        fetch('http://127.0.0.1:8500/admin/organisers/' + id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -134,7 +134,7 @@ function initUpdateOrganiser(){
 function deleteOrganiser(){
     const id = document.getElementById('orgId').value;
 
-    fetch('http://127.0.0.1:8000/admin/organisers/' + id, {
+    fetch('http://127.0.0.1:8500/admin/organisers/' + id, {
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${token}`

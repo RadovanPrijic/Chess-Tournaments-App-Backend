@@ -1,7 +1,7 @@
 const express = require('express');
 const { sequelize } = require('./models');
 const cors = require('cors');
-const PORT = 8000;
+const PORT = 8500;
 
 const users = require('./routes/users');
 const tournaments = require('./routes/tournaments');
@@ -11,7 +11,7 @@ const results = require('./routes/results');
 const app = express();
 
 var corsOptions = {
-    origin: 'http://127.0.0.1:5000',
+    origin: 'http://127.0.0.1:8200',
     optionsSuccessStatus: 200
 }
 

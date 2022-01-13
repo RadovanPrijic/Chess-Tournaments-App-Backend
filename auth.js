@@ -9,7 +9,7 @@ const PORT = 9000;
 const app = express();
 
 var corsOptions = {
-    origin: 'http://127.0.0.1:5000',
+    origin: 'http://127.0.0.1:8200',
     optionsSuccessStatus: 200
 }
 
