@@ -20,17 +20,17 @@ function authToken(req, res, next) {
     });
 }
 
-route.use(authToken);
+//route.use(authToken);
 
 route.get('/organisers', (req, res) => {
 
-    Users.findOne({ where: { id: req.user.userId } })
-        .then( usr => {
+    //Users.findOne({ where: { id: req.user.userId } })
+        //.then( usr => {
             Organisers.findAll()
                 .then( rows => res.json(rows) )
                 .catch( err => res.status(500).json(err) );
-        })
-        .catch( err => res.status(500).json(err) );
+        //})
+        //.catch( err => res.status(500).json(err) );
     
     /*
     Organisers.findAll()
@@ -41,18 +41,18 @@ route.get('/organisers', (req, res) => {
 
 route.get('/organisers/:id', (req, res) => {
 
-    Users.findOne({ where: { id: req.user.userId } })
-        .then( usr => {
-            const result = idSchema.validate(req.params);
-            if(result.error){
-                res.status(422).json({ msg: 'Greška u validaciji: ' + result.error.message });
-            } else {
+    // Users.findOne({ where: { id: req.user.userId } })
+    //     .then( usr => {
+    //         const result = idSchema.validate(req.params);
+    //         if(result.error){
+    //             res.status(422).json({ msg: 'Greška u validaciji: ' + result.error.message });
+    //         } else {
                 Organisers.findOne({ where: { id: req.params.id } })
                     .then( rows => res.json(rows) )
                     .catch( err => res.status(500).json(err) ); 
-            }
-        })
-        .catch( err => res.status(500).json(err) );
+        //     }
+        // })
+        // .catch( err => res.status(500).json(err) );
     
     /*
     Organisers.findOne({ where: { id: req.params.id } })
@@ -63,13 +63,13 @@ route.get('/organisers/:id', (req, res) => {
 
 route.post('/organisers', (req, res) => {
     
-    Users.findOne({ where: { id: req.user.userId } })
-        .then( usr => {
-            if (usr.admin || usr.moderator) {
-                const result = orgSchema.validate(req.body);
-                if(result.error){
-                    res.status(422).json({ msg: 'Greška u validaciji: ' + result.error.message });
-                } else {
+    // Users.findOne({ where: { id: req.user.userId } })
+    //     .then( usr => {
+    //         if (usr.admin || usr.moderator) {
+    //             const result = orgSchema.validate(req.body);
+    //             if(result.error){
+    //                 res.status(422).json({ msg: 'Greška u validaciji: ' + result.error.message });
+    //             } else {
                     Organisers.create({ 
                         name: req.body.name,
                         formation_date: req.body.formation_date,
@@ -79,12 +79,12 @@ route.post('/organisers', (req, res) => {
                     })
                         .then( rows => res.json(rows) )
                         .catch( err => res.status(500).json(err) );
-                }
-            } else {
-                res.status(403).json({ msg: "Nemate pravo na ovu akciju."});
-            }
-        })
-        .catch( err => res.status(500).json(err) );
+        //         }
+        //     } else {
+        //         res.status(403).json({ msg: "Nemate pravo na ovu akciju."});
+        //     }
+        // })
+        // .catch( err => res.status(500).json(err) );
     
     /*
     Organisers.create({ 
@@ -101,17 +101,17 @@ route.post('/organisers', (req, res) => {
 
 route.put('/organisers/:id', (req, res) => {
     
-    Users.findOne({ where: { id: req.user.userId } })
-        .then( usr => {
-            if (usr.admin || usr.moderator) {
-                const idResult = idSchema.validate(req.params);
-                const result = orgSchema.validate(req.body);
+    // Users.findOne({ where: { id: req.user.userId } })
+    //     .then( usr => {
+    //         if (usr.admin || usr.moderator) {
+    //             const idResult = idSchema.validate(req.params);
+    //             const result = orgSchema.validate(req.body);
 
-                if(result.error){
-                    res.status(422).json({ msg: 'Greška u validaciji: ' + result.error.message});
-                } else if(idResult.error){
-                    res.status(422).json({ msg: 'Greška u validaciji: ' + idResult.error.message});
-                } else {
+    //             if(result.error){
+    //                 res.status(422).json({ msg: 'Greška u validaciji: ' + result.error.message});
+    //             } else if(idResult.error){
+    //                 res.status(422).json({ msg: 'Greška u validaciji: ' + idResult.error.message});
+    //             } else {
                     Organisers.findOne({ where: { id: req.params.id } })
                     .then( org => {
                         org.name = req.body.name;
@@ -125,12 +125,12 @@ route.put('/organisers/:id', (req, res) => {
                             .catch( err => res.status(500).json(err) );
                     })
                     .catch( err => res.status(500).json(err) );
-                }
-            } else {
-                res.status(403).json({ msg: "Nemate pravo na ovu akciju."});
-            }
-        })
-        .catch( err => res.status(500).json(err) );
+        //         }
+        //     } else {
+        //         res.status(403).json({ msg: "Nemate pravo na ovu akciju."});
+        //     }
+        // })
+        // .catch( err => res.status(500).json(err) );
     
     /*
     Organisers.findOne({ where: { id: req.params.id } })

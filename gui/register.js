@@ -16,7 +16,7 @@ function init() {
             player: document.getElementById('player').checked,
         };
 
-        fetch('http://127.0.0.1:9000/register', {
+        fetch('http://127.0.0.1:9000/auth_register', {
             method: 'POST',
             headers: { 
                 'Content-Type': 'application/json'

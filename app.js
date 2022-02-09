@@ -3,6 +3,7 @@ const path = require('path');
 const { sequelize } = require('./models');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const history = require('connect-history-api-fallback');
 const PORT = 8200;
 
 const app = express();
@@ -34,21 +35,26 @@ function authToken(req, res, next) {
     });
 }
 
-app.get('/register', (req, res) => {
-    res.sendFile('register.html', { root: './gui' });
-});
+// app.get('/auth_register', (req, res) => {
+//     res.sendFile('register.html', { root: './gui' });
+// });
 
-app.get('/login', (req, res) => {
-    res.sendFile('login.html', { root: './gui' });
-});
+// app.get('/auth_login', (req, res) => {
+//     res.sendFile('login.html', { root: './gui' });
+// });
 
 //app.use((_, res) => res.redirect("/"));
 
-app.get('/', authToken, (req, res) => {
-    res.sendFile('homepage.html', { root: './gui' });
-});
+// app.get('/', authToken, (req, res) => {
+//     res.sendFile('homepage.html', { root: './gui' });
+// });
 
-app.use(express.static(path.join(__dirname, 'gui')));
+//app.use(express.static(path.join(__dirname, 'gui')));
+
+const staticMdl = express.static(path.join(__dirname, 'dist'));
+app.use(staticMdl);
+app.use(history({ index: '/index.html' }));
+app.use(staticMdl);
 
 sequelize.authenticate()
     .then(() => console.log('Konektovani ste na bazu.'))

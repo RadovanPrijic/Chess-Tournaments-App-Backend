@@ -16,7 +16,7 @@ var corsOptions = {
 app.use(express.json());
 app.use(cors(corsOptions));
 
-app.post('/register', (req, res) => {
+app.post('/auth_register', (req, res) => {
     
     const result = userSchema.validate(req.body);
 
@@ -50,7 +50,7 @@ app.post('/register', (req, res) => {
     }   
 });
 
-app.post('/login', (req, res ) => {
+app.post('/auth_login', (req, res ) => {
 
     const result = loginSchema.validate(req.body);
 
@@ -67,7 +67,7 @@ app.post('/login', (req, res ) => {
                 };
 
                 const token = jwt.sign(obj, process.env.ACCESS_TOKEN_SECRET);
-                res.json({ token: token });
+                res.json({ token: token, userId: usr.id});
                 
             } else {
                 res.status(400).json({ msg: "Uneseni kredencijali nisu validni."});
